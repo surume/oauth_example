@@ -16,6 +16,12 @@ Vagrant.configure(2) do |config|
   # config.hostmanager.aliases = %w(vm-node1 vm-node2 vm-node3)
   # config.vm.network "forwarded_port", guest: 4000, host: 4000
 
+  config.vm.provision :docker
+  config.vm.provision :docker_compose,
+                      yml: "/vagrant/docker-compose.yml",
+                      executable_symlink_path: "/usr/bin/docker-compose",
+                      #rebuild: true,
+                      run: "always"
   # config.vm.provision "shell", inline: <<-SHELL
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
