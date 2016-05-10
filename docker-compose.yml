@@ -1,0 +1,14 @@
+app:
+  build: application
+  command:  mix phoenix.server
+  ports:
+    - '4000:4000'
+  links:
+    - db
+  volumes:
+    - "./application:/app"
+
+db:
+  image: postgres:9.1
+  ports:
+    - '5432:5432'
